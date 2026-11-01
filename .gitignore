@@ -1,0 +1,6 @@
+.DS_Store
+# Licence keys and machine settings stay on your machine.
+local.properties
+.env
+.env.*
+!.env.example

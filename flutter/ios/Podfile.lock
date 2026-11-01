@@ -1,0 +1,22 @@
+PODS:
+  - digid (0.1.0):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - digid (from `.symlinks/plugins/digid/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  digid:
+    :path: ".symlinks/plugins/digid/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  digid: ce5b4128728bf37247a8ef2be43701b248374711
+  Flutter: 71a624a5bc0c04062bf19101d501e466baf2fb47
+
+PODFILE CHECKSUM: d089671d48c4ab699621841a6869cc5bba9dd960
+
+COCOAPODS: 1.17.0

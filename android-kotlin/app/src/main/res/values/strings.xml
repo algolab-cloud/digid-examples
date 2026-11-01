@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">digid example</string>
+
+    <!-- Start: the app's own screen (flow choice, back of card, language) -->
+    <string name="start_title">Verify an ID</string>
+    <string name="start_subtitle">A NIDA ID card or a Tanzanian driving licence, read on this phone.</string>
+    <string name="language">Language</string>
+    <string name="engine_loading">Getting ready…</string>
+    <string name="engine_failed">The verification engine could not start: %1$s</string>
+    <string name="evaluation_title">Evaluation mode</string>
+    <string name="evaluation_no_key">No licence key is set (DIGID_LICENCE in local.properties). Results are watermarked and never better than “to review”.</string>
+    <string name="evaluation_key_rejected">The licence key was not accepted (%1$s). Results are watermarked and never better than “to review”.</string>
+    <string name="licence_grace_title">Licence expired</string>
+    <string name="licence_grace_body">The licence is in its grace period. Renew it soon.</string>
+    <string name="licensed_to">Licensed to %1$s</string>
+    <string name="flow_heading">What to check</string>
+    <string name="flow_card_only">ID card or driving licence</string>
+    <string name="flow_card_only_hint">The front of the card.</string>
+    <string name="flow_card_selfie">Card and selfie</string>
+    <string name="flow_card_selfie_hint">Then a live selfie, matched to the photo on the card.</string>
+    <string name="scan_back">Scan the back too</string>
+    <string name="scan_back_hint">Turn the card over after the front.</string>
+    <string name="start_verification">Start verification</string>
+
+    <!-- The flow's words, the same as the drop-in flow (Flutter lib/src/ui/strings.dart) -->
+    <string name="common_back">Back</string>
+    <string name="common_go_back">Go back</string>
+    <string name="common_open_camera">Open the camera</string>
+    <string name="common_done">Done</string>
+    <string name="common_try_again">Try again</string>
+    <string name="common_take_again">Take again</string>
+    <string name="common_starting_camera">Starting the camera…</string>
+    <string name="common_step">%1$d / %2$d</string>
+    <string name="common_powered_by">Powered by</string>
+
+    <string name="step_card">ID card</string>
+    <string name="step_selfie">Selfie</string>
+    <string name="step_card_back">Back of card</string>
+
+    <string name="document_either">NIDA ID card or driving licence</string>
+
+    <!-- Card intro -->
+    <string name="card_intro_heading">Take a photo of your ID</string>
+    <string name="card_intro_body_card_only">The front of your %1$s. The details are read right away.</string>
+    <string name="card_intro_body_card_selfie">First the front of your %1$s, then a quick selfie.</string>
+
+    <!-- Camera -->
+    <string name="capture_place_card">Place your card within the frame; it will be read automatically</string>
+    <string name="capture_reading_card">Reading the card…</string>
+    <string name="capture_reading_back">Reading the back…</string>
+    <string name="common_take_photo">Take photo</string>
+    <string name="capture_card_read">Card read</string>
+    <string name="capture_back_read">Back of card read</string>
+    <string name="capture_back_skipped">Back skipped</string>
+    <string name="capture_selfie_taken">Selfie taken</string>
+    <string name="torch">Flashlight</string>
+    <string name="finish_now_debug">Finish now (debug)</string>
+
+    <!-- Errors -->
+    <string name="error_camera_heading">The camera could not continue</string>
+    <string name="error_camera_message">Close this screen and try again.</string>
+    <string name="error_camera_permission_heading">Allow the camera</string>
+    <string name="error_camera_permission_message">This step needs the camera. Open the settings, allow the camera for this app, then come back.</string>
+    <string name="error_camera_permission_rationale">This step needs the camera, to read the ID card and take the selfie. The pictures stay on this phone.</string>
+    <string name="error_camera_permission_allow">Allow the camera</string>
+    <string name="error_camera_permission_action">Open settings</string>
+    <string name="error_not_licensed_heading">This step is not available</string>
+    <string name="error_not_licensed_message">This app\'s licence does not include it.</string>
+    <string name="error_evaluation_cap_heading">Evaluation limit reached</string>
+    <string name="error_evaluation_cap_message">Restart the app to keep testing.</string>
+    <string name="error_session_heading">The verification could not start</string>
+
+    <!-- Result -->
+    <string name="result_card_read_heading">Card read</string>
+    <string name="result_card_read_message">The details from your ID card are below.</string>
+    <string name="result_licence_read_heading">Licence read</string>
+    <string name="result_licence_read_message">The details from your driving licence are below.</string>
+    <string name="result_face_matched_heading">Face matched</string>
+    <string name="result_face_matched_message">Your ID card and selfie match.</string>
+    <string name="result_review_heading">Needs review</string>
+    <string name="result_review_message">Some details need a second look.</string>
+    <string name="result_fail_heading">Not verified</string>
+    <string name="result_fail_message">We could not verify this ID card.</string>
+    <string name="result_no_card_heading">No ID card found in this photo</string>
+    <string name="result_no_card_message">Try again with the front of the card, inside the frame and in good light.</string>
+    <string name="result_tag_driving_licence">Driving licence</string>
+    <string name="result_tag_back_skipped">Back skipped</string>
+    <string name="result_tag_expired">Expired</string>
+    <string name="result_tag_evaluation">Evaluation</string>
+    <string name="result_group_back">Back of card</string>
+
+    <!-- What was checked: outcomes only -->
+    <string name="details_toggle">See details</string>
+    <string name="details_title">What we checked</string>
+    <string name="details_pass">Passed</string>
+    <string name="details_review">To review</string>
+    <string name="details_fail">Failed</string>
+    <string name="details_count_pass">%1$d passed</string>
+    <string name="details_count_review">%1$d to review</string>
+    <string name="details_count_fail">%1$d failed</string>
+    <string name="check_required_fields">Required fields</string>
+    <string name="check_nin_format">NIN format</string>
+    <string name="check_nin_dob_match">NIN matches date of birth</string>
+    <string name="check_dob_plausible">Date of birth plausible</string>
+    <string name="check_expiry_valid">Expiry</string>
+    <string name="check_card_type_known">Card type known</string>
+    <string name="check_nin_checksum">NIN checksum</string>
+    <string name="check_licence_number_format">Licence number format</string>
+    <string name="check_issue_date_valid">Date of issue</string>
+    <string name="check_sides_match">Both sides match</string>
+    <string name="check_back_read">Back of the card read</string>
+    <string name="check_face">Selfie matches the ID</string>
+    <string name="check_liveness">Live person</string>
+
+    <!-- Result rows -->
+    <string name="field_name">Name</string>
+    <string name="field_nin">NIN</string>
+    <string name="field_born">Born</string>
+    <string name="field_date_of_birth">Date of birth</string>
+    <string name="field_sex">Sex</string>
+    <string name="field_card_type">Card type</string>
+    <string name="field_selfie">Selfie</string>
+    <string name="field_licence_number">Licence number</string>
+    <string name="field_reference_number">Reference number</string>
+    <string name="field_issued">Issued</string>
+    <string name="field_expires">Expires</string>
+    <string name="field_expired">Expired</string>
+    <string name="field_categories">Categories</string>
+    <string name="field_category">Category %1$s</string>
+    <string name="field_issuing_authority">Issuing authority</string>
+    <string name="field_residence">Residence</string>
+    <string name="field_restriction_codes">Restriction codes</string>
+    <string name="field_barcode">Barcode</string>
+    <string name="field_barcode_found">Found (%1$s)</string>
+    <string name="field_barcode_none">Not found</string>
+    <string name="sex_male">Male</string>
+    <string name="sex_female">Female</string>
+    <string name="card_type_citizen">Citizen</string>
+    <string name="card_type_refugee">Refugee</string>
+    <string name="card_type_resident">Resident</string>
+    <string name="card_type_unknown">Unknown</string>
+    <string name="verdict_match">Match</string>
+    <string name="verdict_uncertain">Uncertain</string>
+    <string name="verdict_no_match">No match</string>
+
+    <!-- Camera guidance (the engine's codes, in the drop-in flow's neutral words) -->
+    <string name="guidance_no_card">Place your ID card inside the frame</string>
+    <string name="guidance_move_closer">Move the card closer</string>
+    <string name="guidance_too_close">Move the card a little further away</string>
+    <string name="guidance_blurry">Hold steady, the image is blurry</string>
+    <string name="guidance_glare">Tilt the card to avoid reflections</string>
+    <string name="guidance_tilted">Hold the card flat, facing the camera</string>
+    <string name="guidance_hold_still">Hold still…</string>
+    <string name="guidance_flip_to_back">Now turn the card over</string>
+    <string name="guidance_no_face">Position your face in the frame</string>
+    <string name="guidance_multiple_faces">Only one person should be in view</string>
+    <string name="guidance_face_too_small">Move closer to the camera</string>
+    <string name="guidance_card_face_too_small">Bring the card closer so its photo is clear</string>
+    <string name="guidance_turn_left">Slowly turn your head to the left</string>
+    <string name="guidance_turn_right">Slowly turn your head to the right</string>
+    <string name="guidance_blink">Blink your eyes</string>
+    <string name="guidance_look_straight">Look straight at the camera</string>
+    <string name="guidance_licence_required">Evaluation limit reached. A licence is required</string>
+    <string name="guidance_done">Done</string>
+</resources>

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+# Copied from @algolab-africa/digid-models by vite.config.ts
+public/models/
+# Your licence key
+.env.local
+.env.*.local
+.DS_Store

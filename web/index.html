@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>digid web example</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <header class="top">
+      <span class="brand">digid <small data-t="example">example</small></span>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="sw" aria-pressed="false">SW</button>
+      </div>
+    </header>
+
+    <main>
+      <p id="evaluation" class="banner" role="status" hidden></p>
+
+      <section class="settings" aria-labelledby="settings-title">
+        <h1 id="settings-title" data-t="title">Verify an ID</h1>
+        <p class="muted" data-t="lead">Choose what to check, then open the camera.</p>
+
+        <fieldset id="options">
+          <legend class="sr-only" data-t="what">What to check</legend>
+          <label class="choice">
+            <input type="radio" name="steps" value="card" checked />
+            <span><strong data-t="card">Card only</strong><small data-t="card_hint">NIDA ID or driving licence</small></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="steps" value="card_selfie" />
+            <span><strong data-t="selfie">Card and selfie</strong><small data-t="selfie_hint">The face is matched to the card</small></span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="back" />
+            <span data-t="back">Also scan the back of the card</span>
+          </label>
+        </fieldset>
+      </section>
+
+      <!-- The drop-in flow mounts here. The page frames it; the flow brings its own screens. -->
+      <section id="kyc" class="flow" aria-live="polite"></section>
+
+      <section id="result" class="result" hidden aria-labelledby="result-title">
+        <h2 id="result-title" data-t="result_title">Result on this page</h2>
+        <dl id="result-rows"></dl>
+        <p class="todo" data-t="todo">
+          TODO: send the result JSON to your backend and decide there. This page only shows what the person in front of the camera sees.
+        </p>
+      </section>
+    </main>
+
+    <footer class="muted">
+      <a href="https://digid.co.tz/docs/quick-start-web" data-t="docs">Quick start: Web</a> ·
+      <a href="https://digid.co.tz/docs/backend-verification" data-t="backend">Verify on your backend</a>
+    </footer>
+  </body>
+</html>

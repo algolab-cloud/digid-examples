@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Start: the app's own screen (flow choice, back of card, language) -->
+    <string name="start_title">Thibitisha kitambulisho</string>
+    <string name="start_subtitle">Kitambulisho cha NIDA au leseni ya udereva ya Tanzania, kinasomwa kwenye simu hii.</string>
+    <string name="language">Lugha</string>
+    <string name="engine_loading">Inaandaa…</string>
+    <string name="engine_failed">Injini ya uthibitisho haikuweza kuanza: %1$s</string>
+    <string name="evaluation_title">Hali ya majaribio</string>
+    <string name="evaluation_no_key">Hakuna ufunguo wa leseni (DIGID_LICENCE kwenye local.properties). Matokeo yana alama ya majaribio na hayazidi “ikaguliwe”.</string>
+    <string name="evaluation_key_rejected">Ufunguo wa leseni haukukubaliwa (%1$s). Matokeo yana alama ya majaribio na hayazidi “ikaguliwe”.</string>
+    <string name="licence_grace_title">Leseni imeisha muda</string>
+    <string name="licence_grace_body">Leseni iko kwenye kipindi cha nyongeza. Ihuishe mapema.</string>
+    <string name="licensed_to">Leseni ya %1$s</string>
+    <string name="flow_heading">Cha kukagua</string>
+    <string name="flow_card_only">Kitambulisho au leseni ya udereva</string>
+    <string name="flow_card_only_hint">Upande wa mbele wa kitambulisho.</string>
+    <string name="flow_card_selfie">Kitambulisho na selfie</string>
+    <string name="flow_card_selfie_hint">Kisha selfie hai, inayolinganishwa na picha iliyo kwenye kitambulisho.</string>
+    <string name="scan_back">Soma na upande wa nyuma</string>
+    <string name="scan_back_hint">Geuza kadi baada ya upande wa mbele.</string>
+    <string name="start_verification">Anza uthibitisho</string>
+
+    <!-- The flow's words, the same as the drop-in flow (Flutter lib/src/ui/strings.dart) -->
+    <string name="common_back">Rudi</string>
+    <string name="common_go_back">Rudi</string>
+    <string name="common_open_camera">Fungua kamera</string>
+    <string name="common_done">Maliza</string>
+    <string name="common_try_again">Jaribu tena</string>
+    <string name="common_take_again">Piga tena</string>
+    <string name="common_starting_camera">Inaanza kamera…</string>
+    <string name="common_step">%1$d / %2$d</string>
+    <string name="common_powered_by">Imewezeshwa na</string>
+
+    <string name="step_card">Kitambulisho</string>
+    <string name="step_selfie">Selfie</string>
+    <string name="step_card_back">Upande wa nyuma</string>
+
+    <string name="document_either">kitambulisho cha NIDA au leseni ya udereva</string>
+
+    <!-- Card intro -->
+    <string name="card_intro_heading">Piga picha ya kitambulisho chako</string>
+    <string name="card_intro_body_card_only">Upande wa mbele wa %1$s. Taarifa zinasomwa papo hapo.</string>
+    <string name="card_intro_body_card_selfie">Kwanza upande wa mbele wa %1$s, kisha selfie fupi.</string>
+
+    <!-- Camera -->
+    <string name="capture_place_card">Weka kitambulisho ndani ya fremu; kitasomwa chenyewe</string>
+    <string name="capture_reading_card">Inasoma kitambulisho…</string>
+    <string name="capture_reading_back">Inasoma upande wa nyuma…</string>
+    <string name="common_take_photo">Piga picha</string>
+    <string name="capture_card_read">Kitambulisho kimesomwa</string>
+    <string name="capture_back_read">Upande wa nyuma umesomwa</string>
+    <string name="capture_back_skipped">Upande wa nyuma umerukwa</string>
+    <string name="capture_selfie_taken">Selfie imepigwa</string>
+    <string name="torch">Tochi</string>
+    <string name="finish_now_debug">Maliza sasa (debug)</string>
+
+    <!-- Errors -->
+    <string name="error_camera_heading">Kamera haikuweza kuendelea</string>
+    <string name="error_camera_message">Funga skrini hii na ujaribu tena.</string>
+    <string name="error_camera_permission_heading">Ruhusu kamera</string>
+    <string name="error_camera_permission_message">Hatua hii inahitaji kamera. Fungua mipangilio, ruhusu kamera kwa programu hii, kisha urudi.</string>
+    <string name="error_camera_permission_rationale">Hatua hii inahitaji kamera, kusoma kitambulisho na kupiga selfie. Picha zinabaki kwenye simu hii.</string>
+    <string name="error_camera_permission_allow">Ruhusu kamera</string>
+    <string name="error_camera_permission_action">Fungua mipangilio</string>
+    <string name="error_not_licensed_heading">Hatua hii haipatikani</string>
+    <string name="error_not_licensed_message">Leseni ya programu hii haijumuishi hatua hii.</string>
+    <string name="error_evaluation_cap_heading">Kikomo cha majaribio kimefikiwa</string>
+    <string name="error_evaluation_cap_message">Anzisha programu upya ili kuendelea kujaribu.</string>
+    <string name="error_session_heading">Uthibitisho haukuweza kuanza</string>
+
+    <!-- Result -->
+    <string name="result_card_read_heading">Kitambulisho kimesomwa</string>
+    <string name="result_card_read_message">Taarifa za kitambulisho chako ziko hapa chini.</string>
+    <string name="result_licence_read_heading">Leseni imesomwa</string>
+    <string name="result_licence_read_message">Taarifa za leseni yako ya udereva ziko hapa chini.</string>
+    <string name="result_face_matched_heading">Uso unalingana</string>
+    <string name="result_face_matched_message">Kitambulisho na selfie vinalingana.</string>
+    <string name="result_review_heading">Inahitaji ukaguzi</string>
+    <string name="result_review_message">Baadhi ya taarifa zinahitaji kuangaliwa tena.</string>
+    <string name="result_fail_heading">Haijathibitishwa</string>
+    <string name="result_fail_message">Kitambulisho hiki hakikuweza kuthibitishwa.</string>
+    <string name="result_no_card_heading">Hakuna kitambulisho kwenye picha hii</string>
+    <string name="result_no_card_message">Jaribu tena na upande wa mbele wa kitambulisho, ndani ya fremu na kwenye mwanga mzuri.</string>
+    <string name="result_tag_driving_licence">Leseni ya udereva</string>
+    <string name="result_tag_back_skipped">Upande wa nyuma umerukwa</string>
+    <string name="result_tag_expired">Muda umeisha</string>
+    <string name="result_tag_evaluation">Majaribio</string>
+    <string name="result_group_back">Upande wa nyuma</string>
+
+    <!-- What was checked: outcomes only -->
+    <string name="details_toggle">Angalia maelezo</string>
+    <string name="details_title">Tulichokagua</string>
+    <string name="details_pass">Imepita</string>
+    <string name="details_review">Ikaguliwe</string>
+    <string name="details_fail">Imeshindwa</string>
+    <string name="details_count_pass">%1$d zimepita</string>
+    <string name="details_count_review">%1$d za kukagua</string>
+    <string name="details_count_fail">%1$d zimeshindwa</string>
+    <string name="check_required_fields">Sehemu zinazohitajika</string>
+    <string name="check_nin_format">Muundo wa NIN</string>
+    <string name="check_nin_dob_match">NIN inalingana na tarehe ya kuzaliwa</string>
+    <string name="check_dob_plausible">Tarehe ya kuzaliwa inaeleweka</string>
+    <string name="check_expiry_valid">Mwisho wa matumizi</string>
+    <string name="check_card_type_known">Aina ya kitambulisho inajulikana</string>
+    <string name="check_nin_checksum">Tarakimu ya uhakiki ya NIN</string>
+    <string name="check_licence_number_format">Muundo wa namba ya leseni</string>
+    <string name="check_issue_date_valid">Tarehe ya kutolewa</string>
+    <string name="check_sides_match">Pande mbili zinalingana</string>
+    <string name="check_back_read">Upande wa nyuma umesomwa</string>
+    <string name="check_face">Selfie inalingana na kitambulisho</string>
+    <string name="check_liveness">Mtu halisi</string>
+
+    <!-- Result rows -->
+    <string name="field_name">Jina</string>
+    <string name="field_nin">NIN</string>
+    <string name="field_born">Kuzaliwa</string>
+    <string name="field_date_of_birth">Tarehe ya kuzaliwa</string>
+    <string name="field_sex">Jinsia</string>
+    <string name="field_card_type">Aina ya kitambulisho</string>
+    <string name="field_selfie">Selfie</string>
+    <string name="field_licence_number">Namba ya leseni</string>
+    <string name="field_reference_number">Namba ya kumbukumbu</string>
+    <string name="field_issued">Imetolewa</string>
+    <string name="field_expires">Inaisha</string>
+    <string name="field_expired">Muda umeisha</string>
+    <string name="field_categories">Madaraja</string>
+    <string name="field_category">Daraja %1$s</string>
+    <string name="field_issuing_authority">Mamlaka iliyotoa</string>
+    <string name="field_residence">Makazi</string>
+    <string name="field_restriction_codes">Masharti</string>
+    <string name="field_barcode">Msimbopau</string>
+    <string name="field_barcode_found">Umepatikana (%1$s)</string>
+    <string name="field_barcode_none">Haukupatikana</string>
+    <string name="sex_male">Mwanaume</string>
+    <string name="sex_female">Mwanamke</string>
+    <string name="card_type_citizen">Raia</string>
+    <string name="card_type_refugee">Mkimbizi</string>
+    <string name="card_type_resident">Mkazi</string>
+    <string name="card_type_unknown">Haijulikani</string>
+    <string name="verdict_match">Inalingana</string>
+    <string name="verdict_uncertain">Haina uhakika</string>
+    <string name="verdict_no_match">Hailingani</string>
+
+    <!-- Camera guidance (the engine's codes, in the drop-in flow's neutral words) -->
+    <string name="guidance_no_card">Weka kitambulisho chako ndani ya fremu</string>
+    <string name="guidance_move_closer">Sogeza kitambulisho karibu zaidi</string>
+    <string name="guidance_too_close">Sogeza kitambulisho mbali kidogo</string>
+    <string name="guidance_blurry">Shikilia bila kutikisa, picha haiko wazi</string>
+    <string name="guidance_glare">Inamisha kitambulisho kuepuka mng\'ao</string>
+    <string name="guidance_tilted">Shikilia kitambulisho sawasawa, kikielekea kamera</string>
+    <string name="guidance_hold_still">Tulia kidogo…</string>
+    <string name="guidance_flip_to_back">Sasa geuza kitambulisho upande wa nyuma</string>
+    <string name="guidance_no_face">Weka uso wako ndani ya fremu</string>
+    <string name="guidance_multiple_faces">Mtu mmoja tu aonekane</string>
+    <string name="guidance_face_too_small">Sogea karibu na kamera</string>
+    <string name="guidance_card_face_too_small">Sogeza kitambulisho karibu ili picha ionekane wazi</string>
+    <string name="guidance_turn_left">Geuza kichwa taratibu kushoto</string>
+    <string name="guidance_turn_right">Geuza kichwa taratibu kulia</string>
+    <string name="guidance_blink">Pepesa macho</string>
+    <string name="guidance_look_straight">Tazama kamera moja kwa moja</string>
+    <string name="guidance_licence_required">Kikomo cha majaribio kimefikiwa. Leseni inahitajika</string>
+    <string name="guidance_done">Imekamilika</string>
+</resources>
