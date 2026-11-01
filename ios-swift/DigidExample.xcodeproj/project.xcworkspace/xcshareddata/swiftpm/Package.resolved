@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/algolab-cloud/digid-ios",
       "state" : {
-        "revision" : "956677e6ebabeee6f30268c68d21ad7dd9df2345",
-        "version" : "0.1.2"
+        "revision" : "4864ae4e2803a1de0b73ea99dec2483d4aeced7d",
+        "version" : "0.1.3"
       }
     }
   ],

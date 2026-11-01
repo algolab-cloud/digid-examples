@@ -56,7 +56,7 @@ DigidExample/
 
 - Xcode (built and tested with Xcode 27.2; the code uses the Swift 5 language mode). The app runs
   on iOS 15 and newer, iPhone only.
-- The SDK, version 0.1.2 or newer (`checkFrame` and `pushStill` arrived in 0.1.2), resolved by
+- The SDK, version 0.1.3 or newer (it sends its usage counts itself from 0.1.3), resolved by
   Xcode from GitHub.
 - A real iPhone to verify a card: the simulator has no camera, so there the app stops at "The
   camera could not continue".

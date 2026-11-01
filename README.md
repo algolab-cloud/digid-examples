@@ -11,7 +11,9 @@ MIT-licensed. The SDKs themselves are proprietary and come from each platform's 
 | [`flutter/`](flutter) | `digid` | [pub.dev](https://pub.dev/packages/digid) |
 | [`web/`](web) | `@algolab-africa/digid` | [npm](https://www.npmjs.com/package/@algolab-africa/digid) |
 
-Everything runs on the device: no image or result leaves it unless your app sends it.
+Everything runs on the device: no image or result leaves it unless your app sends it. Under a
+licence the SDKs send their daily usage counts to digid by themselves (counts only, nothing about
+the person): see [Usage reports](https://digid.co.tz/docs/licences-and-renewal#usage-reports).
 
 ## Licence keys
 
