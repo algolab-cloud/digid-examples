@@ -1,0 +1,161 @@
+/* The app's words (the same as the digid Android example's res/values-sw/strings.xml). */
+
+/* Start: the app's own screen (flow choice, back of card, language) */
+"start_title" = "Thibitisha kitambulisho";
+"start_subtitle" = "Kitambulisho cha NIDA au leseni ya udereva ya Tanzania, kinasomwa kwenye simu hii.";
+"language" = "Lugha";
+"engine_loading" = "Inaandaa…";
+"engine_failed" = "Injini ya uthibitisho haikuweza kuanza: %1$@";
+"evaluation_title" = "Hali ya majaribio";
+"evaluation_no_key" = "Hakuna ufunguo wa leseni (DIGID_LICENCE kwenye Secrets.xcconfig). Matokeo yana alama ya majaribio na hayazidi “ikaguliwe”.";
+"evaluation_key_rejected" = "Ufunguo wa leseni haukukubaliwa (%1$@). Matokeo yana alama ya majaribio na hayazidi “ikaguliwe”.";
+"licence_grace_title" = "Leseni imeisha muda";
+"licence_grace_body" = "Leseni iko kwenye kipindi cha nyongeza. Ihuishe mapema.";
+"licensed_to" = "Leseni ya %1$@";
+"flow_heading" = "Cha kukagua";
+"flow_card_only" = "Kitambulisho au leseni ya udereva";
+"flow_card_only_hint" = "Upande wa mbele wa kitambulisho.";
+"flow_card_selfie" = "Kitambulisho na selfie";
+"flow_card_selfie_hint" = "Kisha selfie hai, inayolinganishwa na picha iliyo kwenye kitambulisho.";
+"scan_back" = "Soma na upande wa nyuma";
+"scan_back_hint" = "Geuza kadi baada ya upande wa mbele.";
+"start_verification" = "Anza uthibitisho";
+
+/* The flow's words, the same as the digid drop-in flow's */
+"common_back" = "Rudi";
+"common_go_back" = "Rudi";
+"common_open_camera" = "Fungua kamera";
+"common_done" = "Maliza";
+"common_try_again" = "Jaribu tena";
+"common_take_again" = "Piga tena";
+"common_starting_camera" = "Inaanza kamera…";
+"common_step" = "%1$ld / %2$ld";
+"common_powered_by" = "Imewezeshwa na";
+"step_card" = "Kitambulisho";
+"step_selfie" = "Selfie";
+"step_card_back" = "Upande wa nyuma";
+"document_either" = "kitambulisho cha NIDA au leseni ya udereva";
+
+/* Card intro */
+"card_intro_heading" = "Piga picha ya kitambulisho chako";
+"card_intro_body_card_only" = "Upande wa mbele wa %1$@. Taarifa zinasomwa papo hapo.";
+"card_intro_body_card_selfie" = "Kwanza upande wa mbele wa %1$@, kisha selfie fupi.";
+
+/* Camera */
+"capture_place_card" = "Weka kitambulisho ndani ya fremu; kitasomwa chenyewe";
+"capture_reading_card" = "Inasoma kitambulisho…";
+"capture_reading_back" = "Inasoma upande wa nyuma…";
+"common_take_photo" = "Piga picha";
+"capture_card_read" = "Kitambulisho kimesomwa";
+"capture_back_read" = "Upande wa nyuma umesomwa";
+"capture_back_skipped" = "Upande wa nyuma umerukwa";
+"capture_selfie_taken" = "Selfie imepigwa";
+"torch" = "Tochi";
+"finish_now_debug" = "Maliza sasa (debug)";
+
+/* Errors */
+"error_camera_heading" = "Kamera haikuweza kuendelea";
+"error_camera_message" = "Funga skrini hii na ujaribu tena.";
+"error_camera_permission_heading" = "Ruhusu kamera";
+"error_camera_permission_message" = "Hatua hii inahitaji kamera. Fungua mipangilio, ruhusu kamera kwa programu hii, kisha urudi.";
+"error_camera_permission_rationale" = "Hatua hii inahitaji kamera, kusoma kitambulisho na kupiga selfie. Picha zinabaki kwenye simu hii.";
+"error_camera_permission_allow" = "Ruhusu kamera";
+"error_camera_permission_action" = "Fungua mipangilio";
+"error_not_licensed_heading" = "Hatua hii haipatikani";
+"error_not_licensed_message" = "Leseni ya programu hii haijumuishi hatua hii.";
+"error_evaluation_cap_heading" = "Kikomo cha majaribio kimefikiwa";
+"error_evaluation_cap_message" = "Anzisha programu upya ili kuendelea kujaribu.";
+"error_session_heading" = "Uthibitisho haukuweza kuanza";
+
+/* Result */
+"result_card_read_heading" = "Kitambulisho kimesomwa";
+"result_card_read_message" = "Taarifa za kitambulisho chako ziko hapa chini.";
+"result_licence_read_heading" = "Leseni imesomwa";
+"result_licence_read_message" = "Taarifa za leseni yako ya udereva ziko hapa chini.";
+"result_face_matched_heading" = "Uso unalingana";
+"result_face_matched_message" = "Kitambulisho na selfie vinalingana.";
+"result_review_heading" = "Inahitaji ukaguzi";
+"result_review_message" = "Baadhi ya taarifa zinahitaji kuangaliwa tena.";
+"result_fail_heading" = "Haijathibitishwa";
+"result_fail_message" = "Kitambulisho hiki hakikuweza kuthibitishwa.";
+"result_no_card_heading" = "Hakuna kitambulisho kwenye picha hii";
+"result_no_card_message" = "Jaribu tena na upande wa mbele wa kitambulisho, ndani ya fremu na kwenye mwanga mzuri.";
+"result_tag_driving_licence" = "Leseni ya udereva";
+"result_tag_back_skipped" = "Upande wa nyuma umerukwa";
+"result_tag_expired" = "Muda umeisha";
+"result_tag_evaluation" = "Majaribio";
+"result_group_back" = "Upande wa nyuma";
+
+/* What was checked: outcomes only */
+"details_toggle" = "Angalia maelezo";
+"details_title" = "Tulichokagua";
+"details_pass" = "Imepita";
+"details_review" = "Ikaguliwe";
+"details_fail" = "Imeshindwa";
+"details_count_pass" = "%1$ld zimepita";
+"details_count_review" = "%1$ld za kukagua";
+"details_count_fail" = "%1$ld zimeshindwa";
+"check_required_fields" = "Sehemu zinazohitajika";
+"check_nin_format" = "Muundo wa NIN";
+"check_nin_dob_match" = "NIN inalingana na tarehe ya kuzaliwa";
+"check_dob_plausible" = "Tarehe ya kuzaliwa inaeleweka";
+"check_expiry_valid" = "Mwisho wa matumizi";
+"check_card_type_known" = "Aina ya kitambulisho inajulikana";
+"check_nin_checksum" = "Tarakimu ya uhakiki ya NIN";
+"check_licence_number_format" = "Muundo wa namba ya leseni";
+"check_issue_date_valid" = "Tarehe ya kutolewa";
+"check_sides_match" = "Pande mbili zinalingana";
+"check_back_read" = "Upande wa nyuma umesomwa";
+"check_face" = "Selfie inalingana na kitambulisho";
+"check_liveness" = "Mtu halisi";
+
+/* Result rows */
+"field_name" = "Jina";
+"field_nin" = "NIN";
+"field_born" = "Kuzaliwa";
+"field_date_of_birth" = "Tarehe ya kuzaliwa";
+"field_sex" = "Jinsia";
+"field_card_type" = "Aina ya kitambulisho";
+"field_selfie" = "Selfie";
+"field_licence_number" = "Namba ya leseni";
+"field_reference_number" = "Namba ya kumbukumbu";
+"field_issued" = "Imetolewa";
+"field_expires" = "Inaisha";
+"field_expired" = "Muda umeisha";
+"field_categories" = "Madaraja";
+"field_category" = "Daraja %1$@";
+"field_issuing_authority" = "Mamlaka iliyotoa";
+"field_residence" = "Makazi";
+"field_restriction_codes" = "Masharti";
+"field_barcode" = "Msimbopau";
+"field_barcode_found" = "Umepatikana (%1$@)";
+"field_barcode_none" = "Haukupatikana";
+"sex_male" = "Mwanaume";
+"sex_female" = "Mwanamke";
+"card_type_citizen" = "Raia";
+"card_type_refugee" = "Mkimbizi";
+"card_type_resident" = "Mkazi";
+"card_type_unknown" = "Haijulikani";
+"verdict_match" = "Inalingana";
+"verdict_uncertain" = "Haina uhakika";
+"verdict_no_match" = "Hailingani";
+
+/* Camera guidance (the engine's codes, in the drop-in flow's neutral words) */
+"guidance_no_card" = "Weka kitambulisho chako ndani ya fremu";
+"guidance_move_closer" = "Sogeza kitambulisho karibu zaidi";
+"guidance_too_close" = "Sogeza kitambulisho mbali kidogo";
+"guidance_blurry" = "Shikilia bila kutikisa, picha haiko wazi";
+"guidance_glare" = "Inamisha kitambulisho kuepuka mng'ao";
+"guidance_tilted" = "Shikilia kitambulisho sawasawa, kikielekea kamera";
+"guidance_hold_still" = "Tulia kidogo…";
+"guidance_flip_to_back" = "Sasa geuza kitambulisho upande wa nyuma";
+"guidance_no_face" = "Weka uso wako ndani ya fremu";
+"guidance_multiple_faces" = "Mtu mmoja tu aonekane";
+"guidance_face_too_small" = "Sogea karibu na kamera";
+"guidance_card_face_too_small" = "Sogeza kitambulisho karibu ili picha ionekane wazi";
+"guidance_turn_left" = "Geuza kichwa taratibu kushoto";
+"guidance_turn_right" = "Geuza kichwa taratibu kulia";
+"guidance_blink" = "Pepesa macho";
+"guidance_look_straight" = "Tazama kamera moja kwa moja";
+"guidance_licence_required" = "Kikomo cha majaribio kimefikiwa. Leseni inahitajika";
+"guidance_done" = "Imekamilika";

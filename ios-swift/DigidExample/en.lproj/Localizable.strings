@@ -1,0 +1,161 @@
+/* The app's words (the same as the digid Android example's res/values/strings.xml). */
+
+/* Start: the app's own screen (flow choice, back of card, language) */
+"start_title" = "Verify an ID";
+"start_subtitle" = "A NIDA ID card or a Tanzanian driving licence, read on this phone.";
+"language" = "Language";
+"engine_loading" = "Getting ready…";
+"engine_failed" = "The verification engine could not start: %1$@";
+"evaluation_title" = "Evaluation mode";
+"evaluation_no_key" = "No licence key is set (DIGID_LICENCE in Secrets.xcconfig). Results are watermarked and never better than “to review”.";
+"evaluation_key_rejected" = "The licence key was not accepted (%1$@). Results are watermarked and never better than “to review”.";
+"licence_grace_title" = "Licence expired";
+"licence_grace_body" = "The licence is in its grace period. Renew it soon.";
+"licensed_to" = "Licensed to %1$@";
+"flow_heading" = "What to check";
+"flow_card_only" = "ID card or driving licence";
+"flow_card_only_hint" = "The front of the card.";
+"flow_card_selfie" = "Card and selfie";
+"flow_card_selfie_hint" = "Then a live selfie, matched to the photo on the card.";
+"scan_back" = "Scan the back too";
+"scan_back_hint" = "Turn the card over after the front.";
+"start_verification" = "Start verification";
+
+/* The flow's words, the same as the digid drop-in flow's */
+"common_back" = "Back";
+"common_go_back" = "Go back";
+"common_open_camera" = "Open the camera";
+"common_done" = "Done";
+"common_try_again" = "Try again";
+"common_take_again" = "Take again";
+"common_starting_camera" = "Starting the camera…";
+"common_step" = "%1$ld / %2$ld";
+"common_powered_by" = "Powered by";
+"step_card" = "ID card";
+"step_selfie" = "Selfie";
+"step_card_back" = "Back of card";
+"document_either" = "NIDA ID card or driving licence";
+
+/* Card intro */
+"card_intro_heading" = "Take a photo of your ID";
+"card_intro_body_card_only" = "The front of your %1$@. The details are read right away.";
+"card_intro_body_card_selfie" = "First the front of your %1$@, then a quick selfie.";
+
+/* Camera */
+"capture_place_card" = "Place your card within the frame; it will be read automatically";
+"capture_reading_card" = "Reading the card…";
+"capture_reading_back" = "Reading the back…";
+"common_take_photo" = "Take photo";
+"capture_card_read" = "Card read";
+"capture_back_read" = "Back of card read";
+"capture_back_skipped" = "Back skipped";
+"capture_selfie_taken" = "Selfie taken";
+"torch" = "Flashlight";
+"finish_now_debug" = "Finish now (debug)";
+
+/* Errors */
+"error_camera_heading" = "The camera could not continue";
+"error_camera_message" = "Close this screen and try again.";
+"error_camera_permission_heading" = "Allow the camera";
+"error_camera_permission_message" = "This step needs the camera. Open the settings, allow the camera for this app, then come back.";
+"error_camera_permission_rationale" = "This step needs the camera, to read the ID card and take the selfie. The pictures stay on this phone.";
+"error_camera_permission_allow" = "Allow the camera";
+"error_camera_permission_action" = "Open settings";
+"error_not_licensed_heading" = "This step is not available";
+"error_not_licensed_message" = "This app's licence does not include it.";
+"error_evaluation_cap_heading" = "Evaluation limit reached";
+"error_evaluation_cap_message" = "Restart the app to keep testing.";
+"error_session_heading" = "The verification could not start";
+
+/* Result */
+"result_card_read_heading" = "Card read";
+"result_card_read_message" = "The details from your ID card are below.";
+"result_licence_read_heading" = "Licence read";
+"result_licence_read_message" = "The details from your driving licence are below.";
+"result_face_matched_heading" = "Face matched";
+"result_face_matched_message" = "Your ID card and selfie match.";
+"result_review_heading" = "Needs review";
+"result_review_message" = "Some details need a second look.";
+"result_fail_heading" = "Not verified";
+"result_fail_message" = "We could not verify this ID card.";
+"result_no_card_heading" = "No ID card found in this photo";
+"result_no_card_message" = "Try again with the front of the card, inside the frame and in good light.";
+"result_tag_driving_licence" = "Driving licence";
+"result_tag_back_skipped" = "Back skipped";
+"result_tag_expired" = "Expired";
+"result_tag_evaluation" = "Evaluation";
+"result_group_back" = "Back of card";
+
+/* What was checked: outcomes only */
+"details_toggle" = "See details";
+"details_title" = "What we checked";
+"details_pass" = "Passed";
+"details_review" = "To review";
+"details_fail" = "Failed";
+"details_count_pass" = "%1$ld passed";
+"details_count_review" = "%1$ld to review";
+"details_count_fail" = "%1$ld failed";
+"check_required_fields" = "Required fields";
+"check_nin_format" = "NIN format";
+"check_nin_dob_match" = "NIN matches date of birth";
+"check_dob_plausible" = "Date of birth plausible";
+"check_expiry_valid" = "Expiry";
+"check_card_type_known" = "Card type known";
+"check_nin_checksum" = "NIN checksum";
+"check_licence_number_format" = "Licence number format";
+"check_issue_date_valid" = "Date of issue";
+"check_sides_match" = "Both sides match";
+"check_back_read" = "Back of the card read";
+"check_face" = "Selfie matches the ID";
+"check_liveness" = "Live person";
+
+/* Result rows */
+"field_name" = "Name";
+"field_nin" = "NIN";
+"field_born" = "Born";
+"field_date_of_birth" = "Date of birth";
+"field_sex" = "Sex";
+"field_card_type" = "Card type";
+"field_selfie" = "Selfie";
+"field_licence_number" = "Licence number";
+"field_reference_number" = "Reference number";
+"field_issued" = "Issued";
+"field_expires" = "Expires";
+"field_expired" = "Expired";
+"field_categories" = "Categories";
+"field_category" = "Category %1$@";
+"field_issuing_authority" = "Issuing authority";
+"field_residence" = "Residence";
+"field_restriction_codes" = "Restriction codes";
+"field_barcode" = "Barcode";
+"field_barcode_found" = "Found (%1$@)";
+"field_barcode_none" = "Not found";
+"sex_male" = "Male";
+"sex_female" = "Female";
+"card_type_citizen" = "Citizen";
+"card_type_refugee" = "Refugee";
+"card_type_resident" = "Resident";
+"card_type_unknown" = "Unknown";
+"verdict_match" = "Match";
+"verdict_uncertain" = "Uncertain";
+"verdict_no_match" = "No match";
+
+/* Camera guidance (the engine's codes, in the drop-in flow's neutral words) */
+"guidance_no_card" = "Place your ID card inside the frame";
+"guidance_move_closer" = "Move the card closer";
+"guidance_too_close" = "Move the card a little further away";
+"guidance_blurry" = "Hold steady, the image is blurry";
+"guidance_glare" = "Tilt the card to avoid reflections";
+"guidance_tilted" = "Hold the card flat, facing the camera";
+"guidance_hold_still" = "Hold still…";
+"guidance_flip_to_back" = "Now turn the card over";
+"guidance_no_face" = "Position your face in the frame";
+"guidance_multiple_faces" = "Only one person should be in view";
+"guidance_face_too_small" = "Move closer to the camera";
+"guidance_card_face_too_small" = "Bring the card closer so its photo is clear";
+"guidance_turn_left" = "Slowly turn your head to the left";
+"guidance_turn_right" = "Slowly turn your head to the right";
+"guidance_blink" = "Blink your eyes";
+"guidance_look_straight" = "Look straight at the camera";
+"guidance_licence_required" = "Evaluation limit reached. A licence is required";
+"guidance_done" = "Done";

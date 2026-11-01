@@ -1,0 +1,15 @@
+{
+  "originHash" : "fcea5e12e3579f7df356ac7c277666653b0945ce01531a0233f91f3ead1b7b60",
+  "pins" : [
+    {
+      "identity" : "digid-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/algolab-cloud/digid-ios",
+      "state" : {
+        "revision" : "956677e6ebabeee6f30268c68d21ad7dd9df2345",
+        "version" : "0.1.2"
+      }
+    }
+  ],
+  "version" : 3
+}

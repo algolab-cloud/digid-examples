@@ -1,0 +1,8 @@
+// Build settings shared by Debug and Release.
+//
+// The licence key comes from Secrets.xcconfig next to this file. That file is git-ignored: copy
+// Secrets.example.xcconfig to Secrets.xcconfig and put your key in it. Without it the key is
+// empty and the SDK runs in evaluation mode. Never put a key in this file or in the code.
+DIGID_LICENCE =
+
+#include? "Secrets.xcconfig"

@@ -7,7 +7,7 @@ MIT-licensed. The SDKs themselves are proprietary and come from each platform's 
 | Example | SDK | Registry |
 |---|---|---|
 | [`android-kotlin/`](android-kotlin) | `tz.co.digid:digid` | [Maven Central](https://central.sonatype.com/artifact/tz.co.digid/digid) |
-| `ios-swift/` (coming soon) | `Digid` | [Swift Package Manager](https://github.com/algolab-cloud/digid-ios) |
+| [`ios-swift/`](ios-swift) | `Digid` | [Swift Package Manager](https://github.com/algolab-cloud/digid-ios) |
 | [`flutter/`](flutter) | `digid` | [pub.dev](https://pub.dev/packages/digid) |
 | [`web/`](web) | `@algolab-africa/digid` | [npm](https://www.npmjs.com/package/@algolab-africa/digid) |
 

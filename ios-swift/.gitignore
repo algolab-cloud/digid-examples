@@ -1,0 +1,12 @@
+# The licence key stays on your machine.
+Config/Secrets.xcconfig
+
+# Xcode and SwiftPM
+DerivedData/
+build/
+.build/
+xcuserdata/
+*.xcuserstate
+.swiftpm/
+DigidExample.xcodeproj/project.xcworkspace/xcuserdata/
+.DS_Store

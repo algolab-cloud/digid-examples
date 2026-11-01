@@ -1,0 +1,42 @@
+# The Xcode project is generated from this file with XcodeGen (https://github.com/yonaskolb/XcodeGen):
+#   brew install xcodegen && xcodegen generate
+# The generated DigidExample.xcodeproj is committed too, so you can just open it.
+name: DigidExample
+options:
+  bundleIdPrefix: tz.co.digid.example
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+packages:
+  Digid:
+    url: https://github.com/algolab-cloud/digid-ios
+    from: 0.1.2
+targets:
+  DigidExample:
+    type: application
+    platform: iOS
+    # A shared scheme, so `xcodebuild -scheme DigidExample` works on a fresh clone.
+    scheme: {}
+    sources:
+      - path: DigidExample
+    configFiles:
+      Debug: Config/App.xcconfig
+      Release: Config/App.xcconfig
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: tz.co.digid.example.ios
+        PRODUCT_NAME: DigidExample
+        INFOPLIST_FILE: DigidExample/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+    dependencies:
+      - package: Digid
+        product: Digid
+      - package: Digid
+        product: DigidModels

@@ -1,0 +1,3 @@
+/* Ombi la ruhusa ya kamera. */
+"NSCameraUsageDescription" = "Kamera inasoma kitambulisho chako na kupiga selfie. Picha zinabaki kwenye simu hii.";
+"CFBundleDisplayName" = "digid example";
