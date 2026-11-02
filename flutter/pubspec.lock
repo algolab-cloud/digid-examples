@@ -109,10 +109,10 @@ packages:
     dependency: "direct main"
     description:
       name: digid
-      sha256: f4b20064221c7b4c7fc6e8b121d90f9f616d3a748b715085bcb8d8e39c560e41
+      sha256: "309600a29a13426d12c49232c4db335cae47891734b019c297ae5dee0648d5b0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.3"
+    version: "0.1.4"
   fake_async:
     dependency: transitive
     description:

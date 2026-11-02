@@ -14,6 +14,8 @@ MIT-licensed. The SDKs themselves are proprietary and come from each platform's 
 Everything runs on the device: no image or result leaves it unless your app sends it. Under a
 licence the SDKs send their daily usage counts to digid by themselves (counts only, nothing about
 the person): see [Usage reports](https://digid.co.tz/docs/licences-and-renewal#usage-reports).
+On the free plan each check asks digid for permission before it starts, so free checks need an
+internet connection; paid plans work offline.
 
 ## Licence keys
 

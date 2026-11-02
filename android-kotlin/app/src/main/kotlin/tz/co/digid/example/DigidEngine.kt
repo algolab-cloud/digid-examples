@@ -11,6 +11,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import tz.co.digid.sdk.Digid
 import tz.co.digid.sdk.Flow
@@ -58,8 +59,42 @@ class DigidEngine(context: Context, private val licenceToken: String) {
         }
     }
 
-    /** A new session for one verification attempt. Waits for the models if they are still loading. */
-    suspend fun newSession(flow: Flow): NidaKycSession = digid.await().newSession(flow)
+    /**
+     * A new session for one verification attempt. Waits for the models if they are still loading.
+     * On the free plan each check asks digid for permission before it starts: [NidaKycSession.prepare]
+     * fetches it here, off the main thread, so the camera's first frame never waits on the network
+     * (it throws what the first push would: `ConnectionRequiredException` with reason `check`
+     * offline, `QuotaReachedException` once the month's checks are used up). Paid plans return at once.
+     */
+    suspend fun newSession(flow: Flow): NidaKycSession {
+        val session = digid.await().newSession(flow)
+        try {
+            withContext(Dispatchers.IO) { session.prepare() }
+        } catch (t: Throwable) {
+            session.close()
+            throw t
+        }
+        return session
+    }
+
+    /**
+     * The licence status now: the monthly checks left (free plan) and whether verifying waits
+     * until the phone reaches digid. Checked before the camera opens.
+     */
+    suspend fun licence(): LicenceStatus = digid.await().licence
+
+    /** digid refused to renew the licence (connecting again will not help); null otherwise. */
+    suspend fun renewalRefusal(): String? = digid.await().lastRenewalRefusal?.code
+
+    /**
+     * The phone is online: send the usage counts and renew the licence if it needs it. Network
+     * work, so it runs off the main thread. The SDK also does this by itself in the background;
+     * the "connect to the internet" screen calls it from its Try again button.
+     */
+    suspend fun online() {
+        val engine = digid.await()
+        withContext(Dispatchers.IO) { engine.online() }
+    }
 
     companion object {
         const val TAG = "DigidExample"

@@ -66,6 +66,26 @@
 "error_evaluation_cap_heading" = "Kikomo cha majaribio kimefikiwa";
 "error_evaluation_cap_message" = "Anzisha programu upya ili kuendelea kujaribu.";
 "error_session_heading" = "Uthibitisho haukuweza kuanza";
+"error_quota_heading" = "Ukaguzi wa mwezi huu umekwisha";
+"error_quota_message" = "Uthibitishaji utaanza tena tarehe 1 %1$@.";
+"error_connection_heading" = "Unganisha intaneti ili kuendelea";
+"error_connection_message" = "Programu hii inahitaji kuwasiliana na digid kabla ya kuthibitisha tena.";
+"error_connection_check_heading" = "Unganisha intaneti ili kuendelea.";
+"error_connection_retrying" = "Inaunganisha…";
+"error_renewal_refused_heading" = "Leseni ya programu hii haikuweza kufanywa upya";
+"error_renewal_refused_message" = "Mwombe mtoa huduma wa programu aangalie akaunti yake ya digid.";
+"month_1" = "Januari";
+"month_2" = "Februari";
+"month_3" = "Machi";
+"month_4" = "Aprili";
+"month_5" = "Mei";
+"month_6" = "Juni";
+"month_7" = "Julai";
+"month_8" = "Agosti";
+"month_9" = "Septemba";
+"month_10" = "Oktoba";
+"month_11" = "Novemba";
+"month_12" = "Desemba";
 
 /* Result */
 "result_card_read_heading" = "Kitambulisho kimesomwa";

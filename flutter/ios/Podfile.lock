@@ -1,5 +1,5 @@
 PODS:
-  - digid (0.1.0):
+  - digid (0.1.4):
     - Flutter
   - Flutter (1.0.0)
 
@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  digid: ce5b4128728bf37247a8ef2be43701b248374711
+  digid: 7e2e889574ebe3b39111c2dcba9231bd137247a5
   Flutter: 71a624a5bc0c04062bf19101d501e466baf2fb47
 
 PODFILE CHECKSUM: d089671d48c4ab699621841a6869cc5bba9dd960

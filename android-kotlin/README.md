@@ -13,6 +13,9 @@ It shows how to:
 
 - create the engine **once per process**, loading the models off the main thread (`DigidEngine.kt`);
 - apply a licence key, and show an evaluation banner when there is none;
+- on the free plan, get each check's permission from digid with `session.prepare()` off the main
+  thread before the camera opens, and show "Connect to the internet to continue." (with Try
+  again) or "This month's checks are used up" when it cannot start (`KycViewModel.kt`);
 - run a **card only** or **card and selfie** flow, with an optional back-of-card step;
 - read the **front of the card from one full-resolution photo**, as the Flutter and web flows do:
   `NidaFrameAnalyzer.onFrameCheck` checks the framing on 1080p preview frames, the photo is taken
@@ -40,7 +43,7 @@ app/src/main/kotlin/tz/co/digid/example/
     ├── IntroScreen.kt   before the camera: title, one line, "Open the camera"
     ├── CameraScreen.kt  CameraX preview + analyzer, brackets / oval, guidance box, torch, permission
     ├── ResultScreen.kt  status shield, tags, fields, back of card, what was checked
-    ├── ProblemScreen.kt not licensed, evaluation limit, could not start
+    ├── ProblemScreen.kt not licensed, evaluation limit, checks used up, connect to continue, could not start
     ├── Kit.kt           the flow's building blocks (pill, panels, top bar, "Powered by digid", …)
     ├── Icons.kt         Tabler icons (MIT)        Brand.kt  the digid wordmark
     ├── Labels.kt        the app's words for the SDK's codes

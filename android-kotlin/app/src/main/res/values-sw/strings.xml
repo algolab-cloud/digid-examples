@@ -68,6 +68,28 @@
     <string name="error_evaluation_cap_heading">Kikomo cha majaribio kimefikiwa</string>
     <string name="error_evaluation_cap_message">Anzisha programu upya ili kuendelea kujaribu.</string>
     <string name="error_session_heading">Uthibitisho haukuweza kuanza</string>
+    <string name="error_quota_heading">Ukaguzi wa mwezi huu umekwisha</string>
+    <string name="error_quota_message">Uthibitishaji utaanza tena tarehe 1 %1$s.</string>
+    <string name="error_connection_heading">Unganisha intaneti ili kuendelea</string>
+    <string name="error_connection_message">Programu hii inahitaji kuwasiliana na digid kabla ya kuthibitisha tena.</string>
+    <string name="error_connection_check_heading">Unganisha intaneti ili kuendelea.</string>
+    <string name="error_connection_retrying">Inaunganisha…</string>
+    <string name="error_renewal_refused_heading">Leseni ya programu hii haikuweza kufanywa upya</string>
+    <string name="error_renewal_refused_message">Mwombe mtoa huduma wa programu aangalie akaunti yake ya digid.</string>
+    <string-array name="months">
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Machi</item>
+        <item>Aprili</item>
+        <item>Mei</item>
+        <item>Juni</item>
+        <item>Julai</item>
+        <item>Agosti</item>
+        <item>Septemba</item>
+        <item>Oktoba</item>
+        <item>Novemba</item>
+        <item>Desemba</item>
+    </string-array>
 
     <!-- Result -->
     <string name="result_card_read_heading">Kitambulisho kimesomwa</string>

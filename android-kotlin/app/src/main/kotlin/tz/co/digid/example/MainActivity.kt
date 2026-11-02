@@ -78,7 +78,7 @@ private fun ExampleNavHost(viewModel: KycViewModel = viewModel(factory = KycView
 
             is Screen.Message -> {
                 BackHandler(onBack = viewModel::dismissProblem)
-                ProblemScreen(screen.problem, onBack = viewModel::dismissProblem)
+                ProblemScreen(screen, onBack = viewModel::dismissProblem, onRetry = viewModel::retryOnline)
             }
         }
     }

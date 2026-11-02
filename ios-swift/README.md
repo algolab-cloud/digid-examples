@@ -14,6 +14,9 @@ It shows how to:
 
 - create the engine **once per process**, loading the models off the main thread (`DigidEngine.swift`);
 - apply a licence key, and show an evaluation banner when there is none;
+- on the free plan, get each check's permission from digid with `await session.prepare()` before
+  the camera opens, and show "Connect to the internet to continue." (with Try again) or "This
+  month's checks are used up" when it cannot start (`KycModel.swift`);
 - run a **card only** or **card and selfie** flow, with an optional back-of-card step;
 - read the **front of the card from one full-resolution photo**, as the Flutter, web and Android
   flows do: `session.checkFrame` checks the framing on 1080p video frames, the photo is taken once
@@ -44,7 +47,7 @@ DigidExample/
     ├── IntroScreen.swift  before the camera: title, one line, "Open the camera"
     ├── CameraScreen.swift preview, brackets / oval, guidance box, shutter, torch, permission
     ├── ResultScreen.swift status shield, tags, fields, back of card, what was checked
-    ├── ProblemScreen.swift not licensed, evaluation limit, could not start
+    ├── ProblemScreen.swift not licensed, evaluation limit, checks used up, connect to continue, could not start
     ├── Kit.swift          the flow's building blocks (pill, panels, top bar, "Powered by digid", …)
     ├── Labels.swift       the app's words for the SDK's codes
     ├── Localized.swift    the app-owned language switch
@@ -56,7 +59,7 @@ DigidExample/
 
 - Xcode (built and tested with Xcode 27.2; the code uses the Swift 5 language mode). The app runs
   on iOS 15 and newer, iPhone only.
-- The SDK, version 0.1.3 or newer (it sends its usage counts itself from 0.1.3), resolved by
+- The SDK, version 0.1.4 or newer (free checks ask digid for permission from 0.1.4), resolved by
   Xcode from GitHub.
 - A real iPhone to verify a card: the simulator has no camera, so there the app stops at "The
   camera could not continue".
@@ -123,7 +126,8 @@ See [Verify on your backend](https://digid.co.tz/docs/backend-verification) and
 - **One queue per attempt.** A session must be used from one thread at a time: the camera delivers
   its frames on the attempt's queue, and the photo, `finish` and every other session call run there too.
 - **Engine calls block.** Creating the engine, applying the licence and opening a session can take
-  a moment: none of them runs on the main thread.
+  a moment: none of them runs on the main thread. On the free plan `await session.prepare()` gets
+  the check's permission before the camera opens, so the first frame never waits on the network.
 - The language switch is the app's own: it changes the app's strings (`en.lproj`, `sw.lproj`).
   `NidaKyc.text(for:lang:)` is only the fallback for a guidance code newer than the app. The
   system's camera prompt follows the phone's language. An app that follows the phone's language

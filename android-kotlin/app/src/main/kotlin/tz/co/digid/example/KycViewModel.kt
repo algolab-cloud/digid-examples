@@ -18,6 +18,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import tz.co.digid.example.DigidEngine.Companion.TAG
+import tz.co.digid.sdk.ConnectionReason
+import tz.co.digid.sdk.ConnectionRequiredException
 import tz.co.digid.sdk.FeatureNotLicensedException
 import tz.co.digid.sdk.Flow
 import tz.co.digid.sdk.FrameCheck
@@ -28,9 +30,13 @@ import tz.co.digid.sdk.NidaFrameAnalyzer
 import tz.co.digid.sdk.NidaImage
 import tz.co.digid.sdk.NidaKycSession
 import tz.co.digid.sdk.Overlay
+import tz.co.digid.sdk.QuotaReachedException
 import tz.co.digid.sdk.StepKind
 import tz.co.digid.sdk.StepUpdate
+import tz.co.digid.sdk.connectionReason
+import java.util.Calendar
 import java.util.Locale
+import java.util.TimeZone
 import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -77,7 +83,23 @@ data class Capture(
 )
 
 /** A blocking problem, shown on a message screen. */
-enum class Problem { NOT_LICENSED, EVALUATION_CAP, START_FAILED }
+enum class Problem {
+    NOT_LICENSED,
+    EVALUATION_CAP,
+    START_FAILED,
+
+    /** This month's checks are used up (free plan): verifying starts again on the 1st. */
+    QUOTA_REACHED,
+
+    /** Verifying waits until the phone reaches digid once (Try again runs `online()`). */
+    CONNECTION_REQUIRED,
+
+    /** The free plan: this check could not get digid's permission to start (Try again asks again). */
+    CONNECTION_CHECK,
+
+    /** digid refused to renew the app's licence: connecting again will not help. */
+    RENEWAL_REFUSED,
+}
 
 /** Start (the app's own) → Intro → Camera → Result: the screens of the drop-in flow. */
 sealed interface Screen {
@@ -88,7 +110,11 @@ sealed interface Screen {
     /** [resultJson] is what the app sends to its backend; [settings] are those the attempt ran with. */
     data class Result(val result: KycResult, val resultJson: String, val settings: Settings) : Screen
 
-    data class Message(val problem: Problem) : Screen
+    /**
+     * [resumeMonth] (1–12): for [Problem.QUOTA_REACHED], the month whose 1st verifying starts
+     * again. [busy]: Try again is running (connecting to digid).
+     */
+    data class Message(val problem: Problem, val resumeMonth: Int? = null, val busy: Boolean = false) : Screen
 }
 
 data class UiState(
@@ -153,11 +179,24 @@ class KycViewModel(private val engine: DigidEngine) : ViewModel() {
         val settings = _ui.value.settings
         val id = ++attempt
         viewModelScope.launch {
+            // Before the camera opens: the licence may already say this attempt cannot run.
+            licenceProblem()?.let { problem ->
+                if (id == attempt) _ui.update { it.copy(screen = problem) }
+                return@launch
+            }
             val session = try {
                 engine.newSession(settings.flow)
             } catch (e: FeatureNotLicensedException) {
                 Log.w(TAG, "not licensed: ${e.feature}")
                 _ui.update { it.copy(screen = Screen.Message(Problem.NOT_LICENSED)) }
+                return@launch
+            } catch (e: QuotaReachedException) {
+                Log.w(TAG, "this month's checks are used up")
+                _ui.update { it.copy(screen = quotaProblem()) }
+                return@launch
+            } catch (e: ConnectionRequiredException) {
+                Log.w(TAG, "connection required: ${e.reason}")
+                _ui.update { it.copy(screen = connectionProblem(e.connectionReason)) }
                 return@launch
             } catch (e: Exception) {
                 Log.e(TAG, "could not start a session", e)
@@ -179,6 +218,47 @@ class KycViewModel(private val engine: DigidEngine) : ViewModel() {
             photographing = false
             _ui.update { it.copy(screen = Screen.Camera()) }
             armShutter(StepKind.SCAN_FRONT)
+        }
+    }
+
+    /** The problem screen the licence status calls for before a session starts, if any. */
+    private suspend fun licenceProblem(): Screen.Message? {
+        val licence = engine.licence()
+        return when {
+            licence.connectionRequired != null -> connectionProblem()
+            licence.quotaReached -> quotaProblem()
+            else -> null
+        }
+    }
+
+    /**
+     * "Connect to the internet": for this check's permission ([ConnectionReason.CHECK]), or to
+     * renew and report; "could not be renewed" once digid has refused a renewal.
+     */
+    private suspend fun connectionProblem(reason: ConnectionReason? = null): Screen.Message = Screen.Message(
+        when {
+            reason == ConnectionReason.CHECK -> Problem.CONNECTION_CHECK
+            engine.renewalRefusal() != null -> Problem.RENEWAL_REFUSED
+            else -> Problem.CONNECTION_REQUIRED
+        },
+    )
+
+    /** "This month's checks are used up", with the month verifying starts again. */
+    private suspend fun quotaProblem(): Screen.Message =
+        Screen.Message(Problem.QUOTA_REACHED, resumeMonth = monthAfter(engine.licence().quota?.period))
+
+    /**
+     * The connection screen's Try again: send the usage and renew the licence off the main
+     * thread, then try to start again (which shows the screen again if verifying still waits).
+     * For a check's permission, starting again is enough: it asks for the same check.
+     */
+    fun retryOnline() {
+        val message = _ui.value.screen as? Screen.Message ?: return
+        if (message.busy) return
+        _ui.update { it.copy(screen = message.copy(busy = true)) }
+        viewModelScope.launch {
+            if (message.problem != Problem.CONNECTION_CHECK) engine.online()
+            if (_ui.value.screen == message.copy(busy = true)) start()
         }
     }
 
@@ -238,6 +318,11 @@ class KycViewModel(private val engine: DigidEngine) : ViewModel() {
                     val update = try {
                         session.pushStill(NidaImage.fromJpeg(jpeg, rotation))
                     } catch (e: Exception) {
+                        if (e is QuotaReachedException || e is ConnectionRequiredException) {
+                            Log.w(TAG, "photo refused by the licence: ${e.javaClass.simpleName}")
+                            photoDone()
+                            return stopForLicence(session, e)
+                        }
                         Log.e(TAG, "photo not read", e)
                         return photoDone()
                     }
@@ -252,6 +337,25 @@ class KycViewModel(private val engine: DigidEngine) : ViewModel() {
                 }
             },
         )
+    }
+
+    /**
+     * On [sessionThread]: the licence refused the photo (checks used up, or verifying waits for
+     * the licence server). End the attempt and show the problem screen.
+     */
+    private fun stopForLicence(session: NidaKycSession, e: Exception) {
+        if (activeSession !== session) return
+        activeSession = null
+        session.close()
+        val id = ++attempt
+        viewModelScope.launch {
+            val problem = when (e) {
+                is QuotaReachedException -> quotaProblem()
+                is ConnectionRequiredException -> connectionProblem(e.connectionReason)
+                else -> connectionProblem()
+            }
+            _ui.update { if (id == attempt && it.screen is Screen.Camera) it.copy(screen = problem) else it }
+        }
     }
 
     /** On [sessionThread]: a photo was read (or failed). Frames resume after a short pause. */
@@ -398,6 +502,16 @@ class KycViewModel(private val engine: DigidEngine) : ViewModel() {
 
         /** After a photo that was not accepted, a pause before the viewfinder resumes. */
         const val PHOTO_PAUSE_MS = 900L
+
+        /**
+         * The month (1–12) after [period] (`YYYY-MM`, the licence's quota month); without one,
+         * the month after the current one in East Africa Time, the licence's calendar.
+         */
+        fun monthAfter(period: String?): Int {
+            val month = period?.substringAfter('-', "")?.toIntOrNull()?.takeIf { it in 1..12 }
+                ?: (Calendar.getInstance(TimeZone.getTimeZone("GMT+03:00")).get(Calendar.MONTH) + 1)
+            return month % 12 + 1
+        }
 
         val Factory = viewModelFactory {
             initializer { KycViewModel((this[APPLICATION_KEY] as ExampleApp).engine) }

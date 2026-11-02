@@ -59,9 +59,35 @@ final class DigidEngine: ObservableObject {
     }
 
     /// A new session for one verification attempt. Waits for the models if they are still loading.
+    /// On the free plan each check asks digid for permission before it starts: `prepare()` fetches
+    /// it here, before the camera opens, so the first frame never waits on the network (it throws
+    /// what the first push would: `.ConnectionRequired(reason: "check")` offline, `.QuotaReached`
+    /// once the month's checks are used up). Paid plans return at once.
     func newSession(_ flow: NidaFlow) async throws -> NidaKycSession {
         let kyc = try await loading.value.kyc
-        return try await Task.detached { try kyc.newSession(flow) }.value
+        let session = try await Task.detached { try kyc.newSession(flow) }.value
+        try await session.prepare()
+        return session
+    }
+
+    /// The licence status now: the monthly checks left (free plan) and whether verifying waits
+    /// until the phone reaches digid. Checked before the camera opens.
+    func licence() async throws -> LicenceStatus {
+        let kyc = try await loading.value.kyc
+        return await Task.detached { kyc.licence }.value
+    }
+
+    /// digid refused to renew the licence (connecting again will not help); nil otherwise.
+    func renewalRefusal() async -> String? {
+        try? await loading.value.kyc.lastRenewalRefusal?.code
+    }
+
+    /// The phone is online: send the usage counts and renew the licence if it needs it. The SDK
+    /// also does this by itself in the background; the "connect to the internet" screen calls it
+    /// from its Try again button.
+    func online() async {
+        guard let kyc = try? await loading.value.kyc else { return }
+        await Task.detached { _ = await kyc.online() }.value
     }
 
     var stepTimeoutS: Float {

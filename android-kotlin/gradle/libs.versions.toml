@@ -1,5 +1,5 @@
 [versions]
-digid = "0.1.3"
+digid = "0.1.4"
 agp = "9.0.1"
 kotlin = "2.3.20"
 composeBom = "2026.06.01"

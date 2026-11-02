@@ -39,8 +39,17 @@ enum CameraState: Equatable {
 }
 
 /// A blocking problem, shown on a message screen.
-enum Problem {
+enum Problem: Equatable {
     case notLicensed, evaluationCap, startFailed
+    /// This month's checks are used up (free plan): verifying starts again on the 1st of
+    /// `resumeMonth` (1–12).
+    case quotaReached(resumeMonth: Int)
+    /// Verifying waits until the phone reaches digid once. `busy`: Try again is connecting.
+    case connectionRequired(busy: Bool)
+    /// The free plan: this check could not get digid's permission to start (Try again asks again).
+    case connectionCheck(busy: Bool)
+    /// digid refused to renew the app's licence: connecting again will not help.
+    case renewalRefused
 }
 
 /// Start (the app's own) → Intro → Camera → Result: the screens of the drop-in flow.
@@ -99,12 +108,25 @@ final class KycModel: ObservableObject {
         attemptId += 1
         let id = attemptId
         Task {
+            // Before the camera opens: the licence may already say this attempt cannot run.
+            if let problem = await licenceProblem() {
+                if id == attemptId { screen = .message(problem) }
+                return
+            }
             let session: NidaKycSession
             do {
                 session = try await engine.newSession(settings.flow)
             } catch DigidError.FeatureNotLicensed(let feature) {
                 log.warning("not licensed: \(feature, privacy: .public)")
                 screen = .message(.notLicensed)
+                return
+            } catch DigidError.QuotaReached {
+                log.warning("this month's checks are used up")
+                screen = .message(await quotaProblem())
+                return
+            } catch DigidError.ConnectionRequired(let reason) {
+                log.warning("connection required: \(reason, privacy: .public)")
+                screen = .message(await connectionProblem(ConnectionReason(rawValue: reason)))
                 return
             } catch {
                 log.error("could not start a session: \(String(describing: error), privacy: .public)")
@@ -126,6 +148,72 @@ final class KycModel: ObservableObject {
         }
     }
 
+    /// The problem screen the licence status calls for before a session starts, if any.
+    private func licenceProblem() async -> Problem? {
+        guard let licence = try? await engine.licence() else { return nil }
+        if licence.connectionRequired != nil { return await connectionProblem() }
+        if licence.quotaReached { return await quotaProblem() }
+        return nil
+    }
+
+    /// "Connect to the internet": for this check's permission (`.check`), or to renew and report;
+    /// "could not be renewed" once digid has refused a renewal.
+    private func connectionProblem(_ reason: ConnectionReason? = nil) async -> Problem {
+        if reason == .check { return .connectionCheck(busy: false) }
+        return await engine.renewalRefusal() != nil ? .renewalRefused : .connectionRequired(busy: false)
+    }
+
+    /// "This month's checks are used up", with the month verifying starts again.
+    private func quotaProblem() async -> Problem {
+        .quotaReached(resumeMonth: Self.monthAfter((try? await engine.licence())?.quota?.period))
+    }
+
+    /// The month (1–12) after `period` (`YYYY-MM`, the licence's quota month); without one, the
+    /// month after the current one in East Africa Time, the licence's calendar.
+    static func monthAfter(_ period: String?) -> Int {
+        var month = period.flatMap { $0.split(separator: "-").dropFirst().first }.flatMap { Int($0) } ?? 0
+        if !(1...12).contains(month) {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = TimeZone(secondsFromGMT: 3 * 3600)!
+            month = calendar.component(.month, from: Date())
+        }
+        return month % 12 + 1
+    }
+
+    /// The connection screen's Try again: send the usage and renew the licence (off the main
+    /// thread), then try to start again, which shows the screen again if verifying still waits.
+    /// For a check's permission, starting again is enough: it asks for the same check.
+    func retryOnline() {
+        let busy: Problem
+        switch screen {
+        case .message(.connectionRequired(busy: false)): busy = .connectionRequired(busy: true)
+        case .message(.connectionCheck(busy: false)): busy = .connectionCheck(busy: true)
+        default: return
+        }
+        screen = .message(busy)
+        Task {
+            if case .connectionRequired = busy { await engine.online() }
+            guard case .message(busy) = screen else { return }
+            start()
+        }
+    }
+
+    /// The licence refused a photo (checks used up, or verifying waits for the licence server):
+    /// end the attempt and show the problem screen.
+    private func stopForLicence(_ error: DigidError) {
+        attemptId += 1
+        let id = attemptId
+        attempt?.cancel()
+        attempt = nil
+        camera.stop()
+        Task {
+            let problem: Problem
+            if case .QuotaReached = error { problem = await quotaProblem() } else { problem = await connectionProblem(error.connectionReason) }
+            guard id == attemptId, case .camera = screen else { return }
+            screen = .message(problem)
+        }
+    }
+
     private func makeAttempt(_ session: NidaKycSession, id: Int) -> Attempt {
         // The attempt calls back on its own queue: hop to the main actor, for this attempt only.
         func onMain(_ body: @escaping @MainActor (KycModel) -> Void) {
@@ -138,7 +226,8 @@ final class KycModel: ObservableObject {
             onCheck: { check in onMain { $0.onCheck(check) } },
             onUpdate: { update, capReached in onMain { $0.onUpdate(update, capReached: capReached) } },
             onPhotographing: { on in onMain { $0.updateCapture { $0.photographing = on; if !on { $0.ready = false } } } },
-            onFinish: { result, json in onMain { $0.finishAttempt(result, json: json) } }
+            onFinish: { result, json in onMain { $0.finishAttempt(result, json: json) } },
+            onRefused: { error in onMain { $0.stopForLicence(error) } }
         ))
     }
 

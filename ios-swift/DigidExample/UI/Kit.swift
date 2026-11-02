@@ -257,7 +257,7 @@ struct StatusMark: View {
 }
 
 /// A calm full-screen message for errors and blocked states: a status mark, the headline, one
-/// plain sentence, one pill (default "Go back").
+/// plain sentence (left out when empty), one pill (default "Go back").
 struct MessageScreen: View {
     @Environment(\.strings) private var s
     let heading: String
@@ -273,8 +273,10 @@ struct MessageScreen: View {
             StatusMark(tone: tone, systemName: systemName, size: 44).popIn()
             Spacer().frame(height: FlowSpace.lg)
             MinimalTitle(text: heading)
-            Spacer().frame(height: FlowSpace.sm)
-            MinimalLead(text: message)
+            if !message.isEmpty {
+                Spacer().frame(height: FlowSpace.sm)
+                MinimalLead(text: message)
+            }
             Spacer().frame(height: FlowSpace.xl)
             PrimaryButton(title: actionLabel ?? s("common_go_back"), action: onAction ?? onBack)
         }

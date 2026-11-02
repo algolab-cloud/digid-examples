@@ -22,6 +22,8 @@ final class Attempt: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, @un
         var onPhotographing: (Bool) -> Void
         /// The flow is done: the typed result and the same result as JSON, for the backend.
         var onFinish: (KycResult, String) -> Void
+        /// The licence refused a photo: `.QuotaReached` or `.ConnectionRequired`.
+        var onRefused: (DigidError) -> Void
     }
 
     let session: NidaKycSession
@@ -111,6 +113,10 @@ final class Attempt: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, @un
             let update = try session.pushStill(image)
             log.info("photo \(update.stepDone ? "accepted" : "not read", privacy: .public): step=\(update.step.rawValue, privacy: .public) guidance=\(update.guidance.rawValue, privacy: .public)")
             handle(update)
+        } catch let error as DigidError where error == .QuotaReached || error.connectionReason != nil {
+            log.warning("photo refused by the licence: \(String(describing: error), privacy: .public)")
+            ended = true
+            callbacks.onRefused(error)
         } catch {
             log.error("photo not read: \(String(describing: error), privacy: .public)")
         }

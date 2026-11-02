@@ -284,7 +284,7 @@ fun StatusMark(tone: Tone, icon: ImageVector, size: Dp = 32.dp) {
 
 /**
  * A calm full-screen message for errors and blocked states: a status mark, the headline, one
- * plain sentence, one pill (default "Go back").
+ * plain sentence (left out when empty), one pill (default "Go back").
  */
 @Composable
 fun MessageScreen(
@@ -301,8 +301,10 @@ fun MessageScreen(
         Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) { PopIn { StatusMark(tone, icon, 44.dp) } }
         Spacer(Modifier.height(FlowSpace.lg))
         MinimalTitle(heading)
-        Spacer(Modifier.height(FlowSpace.sm))
-        MinimalLead(message)
+        if (message.isNotEmpty()) {
+            Spacer(Modifier.height(FlowSpace.sm))
+            MinimalLead(message)
+        }
         Spacer(Modifier.height(FlowSpace.xl))
         PrimaryButton(actionLabel ?: stringResource(R.string.common_go_back), onAction ?: onBack)
         secondary?.let { Box(Modifier.fillMaxWidth().padding(top = FlowSpace.xs), contentAlignment = Alignment.Center) { it() } }

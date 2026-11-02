@@ -66,6 +66,26 @@
 "error_evaluation_cap_heading" = "Evaluation limit reached";
 "error_evaluation_cap_message" = "Restart the app to keep testing.";
 "error_session_heading" = "The verification could not start";
+"error_quota_heading" = "This month's checks are used up";
+"error_quota_message" = "Verification starts again on 1 %1$@.";
+"error_connection_heading" = "Connect to the internet to continue";
+"error_connection_message" = "This app needs to reach digid once before it can verify again.";
+"error_connection_check_heading" = "Connect to the internet to continue.";
+"error_connection_retrying" = "Connecting…";
+"error_renewal_refused_heading" = "This app's licence could not be renewed";
+"error_renewal_refused_message" = "Ask the app's provider to check their digid account.";
+"month_1" = "January";
+"month_2" = "February";
+"month_3" = "March";
+"month_4" = "April";
+"month_5" = "May";
+"month_6" = "June";
+"month_7" = "July";
+"month_8" = "August";
+"month_9" = "September";
+"month_10" = "October";
+"month_11" = "November";
+"month_12" = "December";
 
 /* Result */
 "result_card_read_heading" = "Card read";

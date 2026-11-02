@@ -70,6 +70,28 @@
     <string name="error_evaluation_cap_heading">Evaluation limit reached</string>
     <string name="error_evaluation_cap_message">Restart the app to keep testing.</string>
     <string name="error_session_heading">The verification could not start</string>
+    <string name="error_quota_heading">This month\'s checks are used up</string>
+    <string name="error_quota_message">Verification starts again on 1 %1$s.</string>
+    <string name="error_connection_heading">Connect to the internet to continue</string>
+    <string name="error_connection_message">This app needs to reach digid once before it can verify again.</string>
+    <string name="error_connection_check_heading">Connect to the internet to continue.</string>
+    <string name="error_connection_retrying">Connecting…</string>
+    <string name="error_renewal_refused_heading">This app\'s licence could not be renewed</string>
+    <string name="error_renewal_refused_message">Ask the app\'s provider to check their digid account.</string>
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 
     <!-- Result -->
     <string name="result_card_read_heading">Card read</string>

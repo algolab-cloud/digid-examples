@@ -41,7 +41,7 @@ struct RootView: View {
             case .result(let result, _, _):
                 ResultScreen(result: result, onDone: model.backToStart, onTryAgain: model.start)
             case .message(let problem):
-                ProblemScreen(problem: problem, onBack: model.dismissProblem)
+                ProblemScreen(problem: problem, onBack: model.dismissProblem, onRetry: model.retryOnline)
             }
         }
         .environment(\.strings, Strings(model.settings.lang))
