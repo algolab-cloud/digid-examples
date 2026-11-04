@@ -441,7 +441,7 @@
 			repositoryURL = "https://github.com/algolab-cloud/digid-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.4;
+				minimumVersion = 0.1.5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -10,7 +10,7 @@ options:
 packages:
   Digid:
     url: https://github.com/algolab-cloud/digid-ios
-    from: 0.1.4
+    from: 0.1.5
 targets:
   DigidExample:
     type: application
